@@ -44,31 +44,21 @@ import numpy as np
 image1=cv2.imread("tae.jpg")
 image2=cv2.cvtColor(image1,cv2.COLOR_BGR2RGB)
 ### 1. Smoothing Filters
-~~~
-kernel=np.array([[1,2,1],[2,4,2],[1,2,1]])/16
-image3=cv2.filter2D(image2,-1,kernel)
-plt.figure(figsize = (12,12))
-plt.subplot(1,2,1)
-plt.imshow(image2)
-plt.title('Original')
-plt.axis('off')
-plt.subplot(1,2,2)
-plt.imshow(image3)
-plt.title('Weighted average Filtered')
-plt.axis('off')
-~~~
+
 i) Using Averaging Filter
 ```
-gaussian_blur=cv2.GaussianBlur(src=image2,ksize=(11,11),sigmaX=0,sigmaY=0)
-plt.figure(figsize = (12,12))
+kernel=np.ones((11,11),np.float32)/121
+image3=cv2.filter2D(image2,-1,kernel)
+plt.figure(figsize=(8,8))
 plt.subplot(1,2,1)
 plt.imshow(image2)
-plt.title('Original')
-plt.axis('off')
+plt.title("Original Image")
+plt.axis("off")
 plt.subplot(1,2,2)
-plt.imshow(gaussian_blur)
-plt.title('Gaussian Filtered')
-plt.axis('off')
+plt.imshow(image3)
+plt.title("Average Filter Image")
+plt.axis("off")
+plt.show()
 
 ```
 ii) Using Weighted Averaging Filter
@@ -87,51 +77,52 @@ plt.axis('off')
 
 ```
 iii) Using Gaussian Filter
-```
-median=cv2.medianBlur(src=image2,ksize=11)
-plt.figure(figsize = (12,12))
+
+gaussian_blur=cv2.GaussianBlur(image2,(33,33),0,0)
+plt.figure(figsize=(8,8))
 plt.subplot(1,2,1)
 plt.imshow(image2)
-plt.title('Original')
-plt.axis('off')
+plt.title("Original Image")
+plt.axis("off")
 plt.subplot(1,2,2)
-plt.imshow(median)
-plt.title('Median Filtered')
-plt.axis('off')
+plt.imshow(gaussian_blur)
+plt.title("Gaussian Blur")
+plt.axis("off")
+plt.show()
 
-```
+
 
 iv) Using Median Filter
 ```
-kernel=np.array([[0,1,0],[1,-4,1],[0,1,0]])
-image3=cv2.filter2D(image2,-1,kernel)
-plt.figure(figsize = (12,12))
+median=cv2.medianBlur(image2,13)
+plt.figure(figsize=(8,8))
 plt.subplot(1,2,1)
 plt.imshow(image2)
-plt.title('Original')
-plt.axis('off')
+plt.title("Original Image")
+plt.axis("off")
 plt.subplot(1,2,2)
-plt.imshow(image3)
-plt.title('Laplacian kernel Filtered')
-plt.axis('off')
+plt.imshow(gaussian_blur)
+plt.title("Median Blur")
+plt.axis("off")
+plt.show()
 
 ```
 
 ### 2. Sharpening Filters
 i) Using Laplacian Kernal
 ```
-lap_operator=cv2.Laplacian(image2,cv2.CV_64F)
-plt.figure(figsize = (12,12))
+kernel2=np.array([[-1,-1,-1],[2,-2,1],[2,1,-1]])
+image3=cv2.filter2D(image2,-1,kernel2)
+plt.figure(figsize=(8,8))
 plt.subplot(1,2,1)
 plt.imshow(image2)
-plt.title('Original')
-plt.axis('off')
-
+plt.title("Original Image")
+plt.axis("off")
 plt.subplot(1,2,2)
-plt.imshow(lap_operator)
-plt.title('Laplacian operator Filtered')
-plt.axis('off')
-
+plt.imshow(image3)
+plt.title("Laplacian Kernel")
+plt.axis("off")
+plt.show()
 ```
 ii) Using Laplacian Operator
 ```
@@ -146,8 +137,7 @@ plt.imshow(laplacian)
 plt.title("Laplacian Operator")
 plt.axis("off")
 plt.show()
-
-```
+~~~
 
 ## OUTPUT:
 ### 1. Smoothing Filters
@@ -155,10 +145,10 @@ plt.show()
 
 i) Using Averaging Filter
 
-![Screenshot from 2023-04-05 13-34-28](https://user-images.githubusercontent.com/119559822/230021888-c1cb10da-01f8-45c5-81a7-ae372660cd64.png)
+![Screenshot from 2023-04-05 13-53-42](https://user-images.githubusercontent.com/119559822/230024492-cbfea983-1ddd-469c-ba0f-6f240a7b0f76.png)
 
 ii) Using Weighted Averaging Filter
-
+ 
 ![Screenshot from 2023-04-05 13-34-28](https://user-images.githubusercontent.com/119559822/230021813-2a750a82-30ff-415a-8833-7e0544898d1c.png)
 
 iii) Using Gaussian Filter
@@ -167,17 +157,19 @@ iii) Using Gaussian Filter
 
 iv) Using Median Filter
 
+![Screenshot from 2023-04-05 13-34-44](https://user-images.githubusercontent.com/119559822/230023546-3df370c2-b428-4e1d-a97f-847186248d0a.png)
 
 ### 2. Sharpening Filters
 
 
 i) Using Laplacian Kernal
 
+![Screenshot from 2023-04-05 13-34-53](https://user-images.githubusercontent.com/119559822/230023620-239cdeac-1a59-4fe4-841a-57f4e91464b7.png)
 
 
 ii) Using Laplacian Operator
 
-
+![Screenshot from 2023-04-05 13-35-09](https://user-images.githubusercontent.com/119559822/230023646-b3d67e1f-e141-4721-b27c-0605cb4913d6.png)
 
 
 ## Result:
